@@ -58,12 +58,12 @@ Page({
    */
   getList: function () {
     var that = this;
-    if (that.isGetingData) {
+    if (that.data.isGetingData) {
       wx.hideLoading();
       wx.stopPullDownRefresh();
       return;
     }
-    that.isGetingData = true;
+    that.data.isGetingData = true;
     var url = app.config.apiUrl + "api/v5/notifications/threads";
     wx.request({
       url: url,
@@ -73,7 +73,6 @@ Page({
         page: that.data.page,
       },
       success: function (result) {
-        that.isGetingData = false;
         wx.hideLoading();
         wx.stopPullDownRefresh();
         if (result.data.hasOwnProperty("message")) {
@@ -101,6 +100,7 @@ Page({
           }
           that.setReaded();
         }
+        that.data.isGetingData = false;
       }
     });
   },

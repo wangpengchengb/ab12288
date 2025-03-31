@@ -161,7 +161,7 @@ Page({
     wx.showLoading({
       title: '评论读取中',
     });
-    if (that.isGetingData) {
+    if (that.data.isGetingData) {
       wx.hideLoading();
       wx.stopPullDownRefresh();
       return;
@@ -176,7 +176,7 @@ Page({
         order: "desc",
       },
       success: function (result) {
-        that.isGetingData = false;
+        that.data.isGetingData = false;
         wx.hideLoading();
         wx.stopPullDownRefresh();
         if (that.data.page == 1) {

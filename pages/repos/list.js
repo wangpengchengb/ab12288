@@ -121,12 +121,12 @@ Page({
    */
   getList: function () {
     var that = this;
-    if (that.isGetingData) {
+    if (that.data.isGetingData) {
       wx.hideLoading();
       wx.stopPullDownRefresh();
       return;
     }
-    that.isGetingData = true;
+    that.data.isGetingData = true;
     wx.request({
       url: app.config.apiUrl + "api/v5/user/repos",
       method: "GET",
@@ -138,7 +138,6 @@ Page({
         page: that.data.page,
       },
       success: function (result) {
-        that.isGetingData = false;
         wx.hideLoading();
         wx.stopPullDownRefresh();
         if (result.data.hasOwnProperty("message")) {
@@ -165,6 +164,7 @@ Page({
             });
           }
         }
+        that.data.isGetingData = false;
       }
     });
   },

@@ -8,6 +8,7 @@ Page({
     friendList: [],
     userInfo: {},
     myList: [],
+    systemInfo: false,
     per_page: 10
   },
   /**
@@ -31,6 +32,10 @@ Page({
       })
     });
     updateManager.onUpdateFailed(function () {});
+    let systemInfo = wx.getSystemInfoSync();
+    that.setData({
+      systemInfo: systemInfo
+    });
   },
   login() {
     app.login();
@@ -136,12 +141,12 @@ Page({
    */
   getActivitys: function (isMine = false) {
     var that = this;
-    if (that.isGetingData) {
+    if (that.data.isGetingData) {
       wx.hideLoading();
       wx.stopPullDownRefresh();
       return;
     }
-    that.isGetingData = true;
+    that.data.isGetingData = true;
     var url = app.config.apiUrl + "api/v5/users/" + app.userInfo.login + "/received_events";
     if (isMine) {
       url = app.config.apiUrl + "api/v5/users/" + app.userInfo.login + "/events";
@@ -155,7 +160,7 @@ Page({
         // page: 1
       },
       success: function (result) {
-        that.isGetingData = false;
+        that.data.isGetingData = false;
         wx.hideLoading();
         wx.stopPullDownRefresh();
         if (result.data.hasOwnProperty("message")) {
@@ -184,8 +189,7 @@ Page({
   },
   onShareAppMessage: function (res) {
     var that = this;
-    if (res.from === 'button') {
-    }
+    if (res.from === 'button') {}
     if (that.data.isLogin) {
       return {
         title: "我在码云上发现一个叫" + app.userInfo.name + "的大佬...",

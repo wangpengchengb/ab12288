@@ -12,8 +12,9 @@ page {
 view i span font h1 h2 h3 h4 h5 h6 p .iconfont {
   font-family: 'Roboto';
 }
+
 .iconfont {
-  font-family: "iconfont" 'Roboto'!important;
+  font-family: "iconfont"'Roboto' !important;
 }
 
 .weui-media-box__title {
@@ -55,13 +56,6 @@ view i span font h1 h2 h3 h4 h5 h6 p .iconfont {
   text-align: center;
   padding: 10px 0px;
   font-size: 16px;
-}
-
-.weui-flex {
-  background-color: white;
-  margin: 10px;
-  color: #333;
-  border-radius: 10px;
 }
 
 #searchBox {

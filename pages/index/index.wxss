@@ -3,7 +3,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding-bottom: calc(env(safe-area-inset-bottom) / 2);
+  /* background-color: white; */
+  padding-bottom: calc(env(safe-area-inset-bottom) / 2 + 10px);
+  border-radius: 25px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  backdrop-filter: blur(20px);
 }
 
 .menu-title {

@@ -81,7 +81,7 @@ Page({
   },
   getComments: function () {
     var that = this;
-    if (that.isGetingData) {
+    if (that.data.isGetingData) {
       wx.hideLoading();
       wx.stopPullDownRefresh();
       return;
@@ -100,7 +100,6 @@ Page({
         order: "desc"
       },
       success: function (result) {
-        that.isGetingData = false;
         wx.stopPullDownRefresh();
         wx.hideLoading();
         if (!result.data.hasOwnProperty("message")) {
@@ -124,6 +123,7 @@ Page({
             showCancel: false,
           });
         }
+        that.data.isGetingData = false;
       }
     });
   },

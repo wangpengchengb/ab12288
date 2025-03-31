@@ -160,7 +160,7 @@ Page({
    */
   getList: function () {
     var that = this;
-    if (that.isGetingData) {
+    if (that.data.isGetingData) {
       wx.hideLoading();
       wx.stopPullDownRefresh();
       return;
@@ -171,13 +171,12 @@ Page({
       state: that.data.state_value,
       page: that.data.page,
     };
-    that.isGetingData = true;
+    that.data.isGetingData = true;
     wx.request({
       url: url,
       method: "GET",
       data: postData,
       success: function (result) {
-        that.isGetingData = false;
         wx.hideLoading();
         wx.stopPullDownRefresh();
         if (result.data.hasOwnProperty("message")) {
@@ -204,6 +203,7 @@ Page({
             });
           }
         }
+        that.data.isGetingData = false;
       }
     });
   },

@@ -127,11 +127,12 @@ Page({
   },
   getCommits: function () {
     var that = this;
-    if (that.isGetingData) {
+    if (that.data.isGetingData) {
       wx.hideLoading();
       wx.stopPullDownRefresh();
       return;
     }
+    that.data.isGetingData = true;
     wx.request({
       url: app.config.apiUrl + "api/v5/repos/" + that.data.namespace + "/" + that.data.path + "/commits",
       method: "GET",
@@ -165,6 +166,7 @@ Page({
             showCancel: false,
           });
         }
+        that.data.isGetingData = false;
       }
     });
   },

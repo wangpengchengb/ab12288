@@ -468,7 +468,7 @@
       </view>
     </block>
   </view>
-  <view class="tabbar">
+  <view class="tabbar" style="background-color:{{systemInfo.platform=='ios'?'':'white'}}">
     <view class="weui-flex">
       <navigator class="weui-flex__item" url="../repos/list">
         <view class="menu-icon">

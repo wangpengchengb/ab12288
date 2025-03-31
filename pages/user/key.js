@@ -169,7 +169,7 @@ Page({
   },
   getKeys: function () {
     var that = this;
-    if (that.isGetingData) {
+    if (that.data.isGetingData) {
       wx.hideLoading();
       wx.stopPullDownRefresh();
       return;
@@ -182,7 +182,6 @@ Page({
         access_token: app.access_token,
       },
       success: function (result) {
-        that.isGetingData = false;
         wx.hideLoading();
         wx.stopPullDownRefresh();
         if (!result.data.hasOwnProperty("message")) {
@@ -196,6 +195,7 @@ Page({
             showCancel: false,
           });
         }
+        that.data.isGetingData = false;
       }
     });
   },
